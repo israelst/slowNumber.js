@@ -37,3 +37,35 @@ function animateEl(values, duration, onAnimate){
     }
   }
 }
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
+function unformat(content){
+  var unlocalized = content.replace('.', '').replace(',', '.'),
+      value = parseFloat(unlocalized);
+  return value;
+}
+
+function format(value){
+  return value.toString().replace('.', ',');
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+    var fps = 30,
+        els = [].slice.call(document.querySelectorAll('.slowNumber'));
+
+    els.forEach(function(el){
+        var content = (el.firstChild.textContent).trim(),
+            decimalPlaces = content.split(',')[1] || '',
+            value = unformat(content),
+            values = interpolation(fps, easing.quadratic, value);
+
+        animateEl(values, 1000, function (current, i, values){
+          var isLast = (i === values.length - 1),
+              value = round(current, decimalPlaces.length);
+          el.firstChild.textContent = isLast? content : format(value);
+        });
+    });
+});
