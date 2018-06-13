@@ -19,3 +19,8 @@ You can set how much frames per second your animation will have.
 
 ### As performative as possible
 Focusing on fps, it doesn't spend resources unnecessarily changing the numbers.
+
+### Progressive enhancement approach
+Do you remember that debate at the beginning of the century about graceful degradation and progressive enhancement? It is still relevant to me.
+
+If something goes wrong and your javascript does not load, your site or app still make sense.
